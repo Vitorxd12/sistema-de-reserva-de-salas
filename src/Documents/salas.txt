@@ -1,0 +1,5 @@
+coinf-1
+coinf-2
+labinfo-1
+auditorio
+biblioteca

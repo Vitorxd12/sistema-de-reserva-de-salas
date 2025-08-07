@@ -1,0 +1,22 @@
+
+Reserva
+cria objeto da reserva que possui id, data inicio e fim, quem pediu a reserva e em qual sala será. é gerenciada pela classe sala, pois cada sala possui sua propia lista de reserva. além de setters e getters, possui métodos de checar duração, comparar durações e conferir se há conflitos na hora de criar a reserva
+
+Sala
+cria objeto da sala que possui id e sua lista de reservas. possui método implementado da interface reservar, cancelar e listawr reservas. reservar checa se há conflitos na tentativa de reserva usando isConflito e se não, adiciona o objeto de reservas a lista. cancelar remove esse objeto usando id e listar reservas retorna a lista. além de setters e getters, ela pode listar apenas as reservas futuras para aquela sala.
+
+Usuário
+classe abstrata que possui nome, id e email. confere se o email é valido com regex no set. possui classe para printar seus dados em string e possui classe abstrata podeReservarComAntecedencia que sera implementada pelos filhos
+
+Professor e Aluno
+extendidas de usuário, herdam todos os atributos. existem para conferir se o aluno esta tentando reservar para depois de amanha, algo que so professores podem fazer, usando o método de poderreservar da classe usuário.
+
+
+SistemaDeReservas
+gerencia todos os objetos de sala, que estão gerenciando as suas reservas. os armazena em uma lista. também gerencia todos os objetos de usuário. ele carrega o arquivo salas.txt, usuários.txt e carregam na sua lista. usa o método adicionar sala e adicionar usuário para fazer isso. possui gets de sala e usuário. possui método para buscar por reservas usando listarReservas e filtros de período e usuário (métodos diferentes para cada). também pode cancelar reserva usando seus sistemas de busca e o método cacelar da sala
+
+
+a aplicar:
+Reserva compareTo
+Usuario isEqual
+SistemaDeReservas gerar relatorio
