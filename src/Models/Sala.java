@@ -23,8 +23,12 @@ public class Sala implements Reservavel {
         reservas.add(r);
         return true; // Reserva bem-sucedida
     }
-    public boolean cancelar(String idReserva){
-        return reservas.removeIf(reserva -> reserva.getIdReserva().equals(idReserva));
+    public boolean cancelar(String idReserva) {
+        boolean removido = reservas.removeIf(reserva -> reserva.getIdReserva().equals(idReserva));
+        if (!removido) {
+            System.out.println("Reserva com ID " + idReserva + " não encontrada.");
+        }
+        return removido;
     }
 
     public List<Reserva> verReservasFuturas(){

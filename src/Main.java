@@ -70,7 +70,7 @@ public class Main {
                 cancelarReserva(sistemaDeReservas, idUsuario);
                 break;
             case "5":
-                gerarRelatorio(sistemaDeReservas);
+                gerarRelatorio(sistemaDeReservas, idUsuario);
                 break;
             case "6":
                 System.out.println("Logout realizado com sucesso.");
@@ -135,9 +135,9 @@ public class Main {
         menuPrincipal(sistemaDeReservas, idUsuario);
     }
 
-    public static void listarMinhasReservas(SistemaDeReservas sistemaDeReservas, String id) {
+    public static void listarMinhasReservas(SistemaDeReservas sistemaDeReservas, String idUsuario) {
         Scanner sc = new Scanner(System.in);
-        List<Reserva> reservasDoUsuario = sistemaDeReservas.ListarReservasDoUsuario(id);
+        List<Reserva> reservasDoUsuario = sistemaDeReservas.ListarReservasDoUsuario(idUsuario);
         if (reservasDoUsuario.isEmpty()) {
             System.out.println("Você não possui reservas.");
         } else {
@@ -147,20 +147,43 @@ public class Main {
                     ", Início: " + reserva.getDataHoraInicio() +
                     ", Fim: " + reserva.getDataHoraFim()));
         }
-        menuPrincipal(sistemaDeReservas, id);
+        menuPrincipal(sistemaDeReservas, idUsuario);
     }
 
     public static void cancelarReserva(SistemaDeReservas sistemaDeReservas, String idUsuario) {
-        System.out.println("Digite o id do reserva que deseja cancelar:");
+        System.out.println("Digite o id da reserva que deseja cancelar:");
         Scanner sc = new Scanner(System.in);
-        List<Sala> salas = sistemaDeReservas.getSalas();
-        for (Sala sala : salas) {
-            
+        String idReserva = sc.nextLine();
+        boolean reservaEncontrada = false;
+
+        for (Sala sala : sistemaDeReservas.getSalas()) {
+            for (Reserva reserva : sala.getReservas()) {
+                if (reserva.getIdReserva().equalsIgnoreCase(idReserva)) {
+                    if (reserva.getIdUsuario().equals(idUsuario)) {
+                        boolean cancelado = sala.cancelar(idReserva);
+                        if (cancelado) {
+                            System.out.println("Reserva cancelada com sucesso.");
+                        } else {
+                            System.out.println("Falha ao cancelar a reserva. Tente novamente.");
+                        }
+                    } else {
+                        System.out.println("Você não tem permissão para cancelar esta reserva.");
+                    }
+                    reservaEncontrada = true;
+                    break;
+                }
+            }
+            if (reservaEncontrada) break;
         }
 
+        if (!reservaEncontrada) {
+            System.out.println("Reserva não encontrada.");
+        }
+        menuPrincipal(sistemaDeReservas, idUsuario);
     }
 
-    public static void gerarRelatorio(SistemaDeReservas sistemaDeReservas) {
+    public static void gerarRelatorio(SistemaDeReservas sistemaDeReservas, String idUsuario) {
         System.out.println(sistemaDeReservas.gerarRelatorio());
+        menuPrincipal(sistemaDeReservas, idUsuario);
     }
 }
