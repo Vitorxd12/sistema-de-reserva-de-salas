@@ -21,6 +21,10 @@ public abstract class Usuario{
         System.out.println(retorno);
         return retorno;
     }
+
+
+
+
     public String getNome() {
         return nome;
     }
@@ -30,6 +34,7 @@ public abstract class Usuario{
     public String getEmail() {
         return email;
     }
+
     public void setEmail(String email) {
         String regex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
         this.email = email.matches(regex) ? email : (null);

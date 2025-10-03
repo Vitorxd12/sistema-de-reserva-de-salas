@@ -1,0 +1,4 @@
+PROFESSOR;Maria Silva;p1;maria@ifs.edu.br
+ALUNO;João Santos;a1;joao@academico.ifs.edu.br
+PROFESSOR;Carlos Oliveira;p2;carlos@ifs.edu.br
+ALUNO;Ana Pereira;a2;ana@academico.ifs.edu.br

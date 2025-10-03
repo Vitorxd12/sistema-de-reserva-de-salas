@@ -74,9 +74,11 @@ public class SistemaDeReservas {
             e.printStackTrace();
         }
     }
+
     public int getNumeroSalas() {
         return  salas.size();
     }
+
     public void carregarReservas(String caminhoArquivo) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         try {

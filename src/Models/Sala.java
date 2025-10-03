@@ -47,8 +47,7 @@ public class Sala implements Reservavel {
     public List<Reserva> getReservas(){
         return new ArrayList<>(reservas);
     }
-    public String gerarIdReserva(){
-        SistemaDeReservas sistemaDeReservas = new SistemaDeReservas();
+    public String gerarIdReserva(SistemaDeReservas sistemaDeReservas) {
         return "RES-" + reservas.size() + sistemaDeReservas.getNumeroSalas() + 1;
     }
 }

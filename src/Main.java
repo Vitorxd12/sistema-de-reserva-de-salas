@@ -123,7 +123,7 @@ public class Main {
                 .filter(s -> s.getIdSala().equals(idSala))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("Sala não encontrada: " + idSala));
-        String idReserva = sala.gerarIdReserva();
+        String idReserva = sala.gerarIdReserva(sistemaDeReservas);
 
         //Criar reserva
         Reserva reserva = new Reserva(idReserva, idUsuario, idSala, dataHoraInicio, dataHoraFim);
